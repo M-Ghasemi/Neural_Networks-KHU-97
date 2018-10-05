@@ -2,7 +2,19 @@ import numpy as np
 
 
 def perceptron_rule(X, Y, maximum_iteration=None, verbose=True):
+    """
+    Function for computing the weights of a decision boundary according to the Perceptron rule.
+    This function just works for a group of linearly separable inputs.
 
+    Args:
+        X (numpy.array): input matrix.
+        Y (numpy.array): desired output.
+        maximum_iteration(int): the number of maximum iteration.
+        verbose (bool): if True, all computed weights will displayed in all iterations.
+
+    Returns:
+        numpy.array: an array of shape X.shape[1] (the size of input)
+    """
     if maximum_iteration is None:
         maximum_iteration = X.shape[0] * 20
 
@@ -56,6 +68,9 @@ W = perceptron_rule(X, Y)
 
 
 """
+# simplified (script like) version of above code
+# just copy and paste the following codes in a python shell
+
 import numpy as np
 
 # INPUT
