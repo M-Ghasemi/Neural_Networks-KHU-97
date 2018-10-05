@@ -14,13 +14,13 @@ def perceptron_rule(X, Y, maximum_iteration=None, verbose=True):
     # INPUT NUMBER
     k = 0
     # CHECK IF ALL PREDICTED VALUES ARE CORRECT (STOP CONDITION)
-    correct_predicted = np.zeros_like(Y)
+    Predicted = np.zeros_like(Y, dtype=int)
 
     # if x > 0 returns 1, elif x < 0 returns -1, else returns 0
     sign = lambda a: (a > 0) - (a < 0)
 
     # REPEAT UNTIL ALL OUTPUTS ARE EQUAL TO DESIRED OUTPUTS
-    while not np.all(correct_predicted) and t < maximum_iteration:
+    while not np.all(Predicted == Y) and t < maximum_iteration:
 
         y = W.dot(X[k].T)
 
@@ -30,10 +30,10 @@ def perceptron_rule(X, Y, maximum_iteration=None, verbose=True):
         y = sign(int(y))
 
         if y == Y[k]:
-            correct_predicted[k] = 1
+            Predicted[k] = y
         else:
             W += Y[k] * X[k]
-            correct_predicted *= 0
+            Predicted *= 0  # BECAUSE OF WEIGHT'S CHANGE WE SHOULD CHECK AGAIN
 
         t += 1
         k = (k + 1) % X.shape[0]
