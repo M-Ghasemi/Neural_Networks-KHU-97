@@ -1,6 +1,6 @@
 # Artificial Neural Networks
 
-course: Neural Networks
+Course: Neural Networks
 
 University: Kharazmi
 
