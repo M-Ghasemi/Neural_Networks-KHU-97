@@ -3,36 +3,6 @@ from sympy import Array
 from sympy import derive_by_array
 
 
-def f1(x1, x2):
-    """Example function with two variables.
-
-    Args:
-        x1 (number or sympy.Symbol): x1 could be an integer or float number or a sympy.Symbol.
-        x2 (number or sympy.Symbol): x2 could be an integer or float number or a sympy.Symbol.
-
-    Returns:
-        number or symbolic formula: if the two parameters are (int/float), it returns the value of
-            of x1 ** 3 + 25 * x2 ** 2 otherwise it returns a symbolic formula of type sympy.core.add.Add.
-
-    Examples:
-        >>> x1, x2 = 2, 1
-        >>> print(f1(x1, x2))
-        33
-        >>>
-        >>>
-        >>> from sympy import symbols
-        >>> x1, x2 = symbols('x1 x2')
-        >>> f1X = f1(x1, x2)
-        >>> print(f1X)
-        x1**3 + 25*x2**2
-        >>> print(type(f1X))
-        <class 'sympy.core.add.Add'>
-        >>> print(f1X.xreplace({x1:2, x2:1}))
-        33
-    """
-    return x1 ** 3 + 25 * x2 ** 2
-
-
 def steepest_descent(f, alpha, max_iter, threshold, X0, *func_vars):
     """The steepest descent algorithm for numerically finding the minimum value of a function,
     based on the gradient of that function. It uses the gradient function (or the scalar derivative,
@@ -90,3 +60,93 @@ def steepest_descent(f, alpha, max_iter, threshold, X0, *func_vars):
         i += 1
 
     return X
+
+
+def f1(x1, x2):
+    """Example function with two variables.
+
+    Args:
+        x1 (number or sympy.Symbol): x1 could be an integer or float number or a sympy.Symbol.
+        x2 (number or sympy.Symbol): x2 could be an integer or float number or a sympy.Symbol.
+
+    Returns:
+        A number, array or symbolic formula: this function computes and returns
+            fX = x1 ** 2 + 25 * x2 ** 2
+
+        if x1 and x2 are (int/float):
+            returns the value of fX (a number)
+        if x1 and x2 are numpy arrays with same shape:
+            returns a numpy array
+            (dont use arrays with different shapes if you don't know about numpy broadcasting)
+        if x1 and/or x2 are sympy Symbol:
+            returns a symbolic formula of fX with type sympy.core.add.Add
+
+    Examples:
+        >>> x1, x2 = 2, 1
+        >>> print(f1(x1, x2))
+        29
+        >>>
+        >>>
+        >>> from sympy import symbols
+        >>> x1, x2 = symbols('x1 x2')
+        >>> f1X = f1(x1, x2)
+        >>> print(f1X)
+        x1**2 + 25*x2**2
+        >>> print(type(f1X))
+        <class 'sympy.core.add.Add'>
+        >>> print(f1X.xreplace({x1:2, x2:1}))
+        29
+        >>>
+        >>>
+        >>> x1 = np.arange(4)
+        >>> x2 = np.arange(4)
+        >>> print(f2(x1, x2))
+        [  0  26 104 234]
+    """
+    fX = x1 ** 2 + 25 * x2 ** 2
+    return fX
+
+
+def f2(x1, x2):
+    """Example function with two variables.
+
+    Args:
+        x1 (number or sympy.Symbol): x1 could be an integer or float number or a sympy.Symbol.
+        x2 (number or sympy.Symbol): x2 could be an integer or float number or a sympy.Symbol.
+
+    Returns:
+        A number, array or symbolic formula: this function computes and returns
+            fX = x1 ** 2 + 2 * x1 * x2 + 2 * x2 ** 2 + x1
+
+        if x1 and x2 are (int/float):
+            returns the value of fX (a number)
+        if x1 and x2 are numpy arrays with same shape:
+            returns a numpy array
+            (dont use arrays with different shapes if you don't know about numpy broadcasting)
+        if x1 and/or x2 are sympy Symbol:
+            returns a symbolic formula of fX with type sympy.core.add.Add
+
+    Examples:
+        >>> x1, x2 = 2, 1
+        >>> print(f2(x1, x2))
+        12
+        >>>
+        >>>
+        >>> from sympy import symbols
+        >>> x1, x2 = symbols('x1 x2')
+        >>> f2X = f2(x1, x2)
+        >>> print(f2X)
+        x1**2 + 2*x1*x2 + x1 + 2*x2**2
+        >>> print(type(f2X))
+        <class 'sympy.core.add.Add'>
+        >>> print(f2X.xreplace({x1:2, x2:1}))
+        12
+        >>>
+        >>>
+        >>> x1 = np.arange(4)
+        >>> x2 = np.arange(4)
+        >>> print(f2(x1, x2))
+        [ 0  6 22 48]
+    """
+    fX = x1 ** 2 + 2 * x1 * x2 + 2 * x2 ** 2 + x1
+    return fX
