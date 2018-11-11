@@ -1,6 +1,7 @@
 import numpy as np
 from sympy import Array
 from sympy import derive_by_array
+from mpmath import mp
 
 
 def steepest_descent(f, alpha, max_iter, threshold, X0, *func_vars):
@@ -150,3 +151,29 @@ def f2(x1, x2):
     """
     fX = x1 ** 2 + 2 * x1 * x2 + 2 * x2 ** 2 + x1
     return fX
+
+
+def compute_quadratic_function_biggest_stable_learning_rate(f, threshold, *func_vars):
+    """Computes the biggest stable (steepest descent) learning rate for a quadratic function.
+
+    Args:
+        f (function): quadratic function.
+        threshold (float): maximum distance from the best learning rate.
+        *func_vars (sympy.Symbol): a list of function variables. the derivative of the function
+            f will be computed with respect to these parameters.
+
+    Returns:
+        alpha (float): the biggest stable learning rate.
+
+    Examples:
+        >>> def f1(x1, x2): return x1 ** 2 + 25 * x2 ** 2
+        >>> x1, x2 = symbols('x1, x2')
+        >>> compute_quadratic_function_biggest_stable_learning_rate(f1, 0.001, x1, x2)
+        0.039
+    """
+    gradient = derive_by_array(f(*func_vars), func_vars)
+    hessian = derive_by_array(gradient, func_vars).tomatrix()
+    S = mp.svd(hessian, compute_uv=False)
+    alpha = 2. / float(max(S)) - threshold
+
+    return alpha
