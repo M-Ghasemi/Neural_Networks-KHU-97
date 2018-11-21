@@ -51,15 +51,20 @@ class Perceptron(object):
         # INPUT NUMBER
         k = 0
 
+        # FOR THIS PROBLE WE DONT USE THE PREDICTED VARIABLE
         Predicted = np.zeros_like(y, dtype=int)
+
         # if x > 0 returns 1, elif x < 0 returns -1, else returns 0
         sign = lambda a: (a > 0) - (a < 0)
 
-        # REPEAT UNTIL ALL OUTPUTS ARE EQUAL TO DESIRED OUTPUTS
+        # WE COULD CHECK IF ALL PREDICTED ARE EQUAL TO THE DESIRED OUTPUT
+        # BUT THE PROBLEM EXPLICITYE SAYS THAT CONDITION SOULD BE THE n_iter number
         while t < self.n_iter:  # and not np.all(Predicted == y)
 
             pred = sign(int(augmented_X[k].dot(self.w_)))
 
+            # Predicted VARIABLE IS NOT USED, SO THE IF ELSE STATEMENT IS NOT REQUIRED
+            # AND "self.w_ += y[k] * augmented_X[k]" IS ENOUGH, BUT ILL KEEP ALL OF IT FOR NO REASON.
             if pred == y[k]:
                 Predicted[k] = pred
             else:

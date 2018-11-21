@@ -2,34 +2,52 @@ import numpy as np
 
 
 class Adaline(object):
+    """Adaline classifier
 
-    def __init__(self, eta=0.01, n_epoch=50, random_state=1):
+    Attributes:
+        eta (float): the learning rate.
+        epoch (int): the number of epochs.
+    """
+
+    def __init__(self, eta=0.001, epoch=100):
         self.eta = eta
-        self.n_epoch = n_epoch
-        self.random_state = random_state
+        self.epoch = epoch
 
     def fit(self, X, y):
-        rgen = np.random.RandomState(self.random_state)
-        self.w_ = rgen.normal(loc=0.0, scale=0.01, size=1 + X.shape[1])
-        self.errors_ = []
+        """Fits the training data.
 
-        augmented_X = np.concatenate((np.ones((X.shape[0], 1)), X), axis=1)
+        Args:
+            X : array-like (training vectors) of shape [n_samples, n_features],
+                where n_samples is the number of samples and n_features is the
+                number of features.
+            y : array-like (Target values) of shape [n_samples].
 
-        for _ in range(self.n_epoch):
-            pred = augmented_X.dot(self.w_)
-            errors = y - pred
+        Returns:
+            self : object
+        """
+        np.random.seed(16)
+        self.weight_ = np.random.uniform(-1, 1, X.shape[1] + 1)
+        self.error_ = []
 
-            self.w_ += self.eta * augmented_X.T.dot(errors)
+        for _ in range(self.epoch):
 
-            cost = 1 / 2 * sum((errors ** 2))
-            self.errors_.append(cost)
+            output = self.activation_function(X)
+            error = y - output
+
+            self.weight_[0] += self.eta * sum(error)
+            self.weight_[1:] += self.eta * X.T.dot(error)
+
+            cost = (1 / 2) * sum((error**2))
+            self.error_.append(cost)
 
         return self
 
     def net_input(self, X):
-        """Calculate net input"""
-        return np.dot(X, self.w_[1:]) + self.w_[0]
-
+        """Calculate the net input z"""
+        return np.dot(X, self.weight_[1:]) + self.weight_[0]
+    def activation_function(self, X):
+        """Calculate the output g(z)"""
+        return self.net_input(X)
     def predict(self, X):
-        """Return class label after unit step"""
-        return np.where(self.net_input(X) >= 0.0, 1, -1)
+        """Return the binary value 0 or 1"""
+        return np.where(self.activation_function(X) >= 0.0, 1, -1)
