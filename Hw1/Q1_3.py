@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+
 from perceptron import Perceptron
 
 
@@ -15,3 +16,18 @@ plt.ylabel('petal length [cm]')
 plt.legend(loc='upper left')
 plt.show()
 
+
+perceptron = Perceptron()
+
+errors = list()
+for i in range(1, 300):
+    perceptron.n_iter = i
+    perceptron.fit(X, y)
+    errors.append(sum(perceptron.predict(X) != y))
+
+
+# DECISION BOUNDARY
+SEPAL = [round(min(X[:, 0]) - 1), round(max(X[:, 0]) + 1)]
+PETAL = [-((W[1] * sep) + W[0]) / W[2] for sep in SEPAL]
+
+plt.plot(SEPAL, PETAL, 'r--')
