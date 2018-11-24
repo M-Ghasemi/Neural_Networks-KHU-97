@@ -6,7 +6,7 @@ University: Kharazmi
 
 Professor: Azadeh Mansouri
 
-**Slides are shared on [my dropbox](https://www.dropbox.com/sh/ia3wofme8lqv8pc/AACxHCUiGwfVpUX7z8hmCJEga?dl=0).**
+**Slides are shared on [my Dropbox](https://www.dropbox.com/sh/ia3wofme8lqv8pc/AACxHCUiGwfVpUX7z8hmCJEga?dl=0).**
 
 ## Getting Started
 
