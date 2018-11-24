@@ -6,6 +6,8 @@ University: Kharazmi
 
 Professor: Azadeh Mansouri
 
+**Slides are shared on [my dropbox](https://www.dropbox.com/sh/ia3wofme8lqv8pc/AACxHCUiGwfVpUX7z8hmCJEga?dl=0).**
+
 ## Getting Started
 
 I suppose you have python3.5+, pip3 and git installed on a linux system. It's better to use a virtual environment to avoid further conflicts with system wide packages.
