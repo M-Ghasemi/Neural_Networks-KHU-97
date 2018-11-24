@@ -14,7 +14,7 @@ I suppose you have python3.5+, pip3 and git installed on a linux system. It's be
 
 ```$ git clone https://github.com/M-Ghasemi/Neural_Networks-KHU-97.git```
 
-**Step 2**: Install required packages with executing the following line. make sure that you are in the same directory with requirements file.
+**Step 2**: Install required packages. make sure that you are in the root directory of the project.
 
 ```$ pip install -r requirements.txt --no-index --find-links```
 
