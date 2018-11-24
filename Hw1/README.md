@@ -11,11 +11,15 @@ Question 1 is implemented in perceptron.py file, and question 2 is implemented i
 
 I suppose you have python3.5+, pip3 and git installed on a linux system. It's better to use a virtual environment to avoid further conflicts with system wide packages.
 
-**Step 1**: Install required packages with executing the following line. make sure that you are in the same directory with requirements file.
+**Step 1**: Get a copy of project:
+
+```$ git clone https://github.com/M-Ghasemi/Neural_Networks-KHU-97.git```
+
+**Step 2**: Install required packages with executing the following line. make sure that you are in the same directory with requirements file.
 
 ```$ pip install -r requirements.txt --no-index --find-links```
 
-**Step 2**: run jupyter notebook and open Hw1.ipynb file (or run python files or copy codes to ipython shell)
+**Step 3**: run jupyter notebook and open Hw1.ipynb file (or run python files or copy codes to ipython shell)
 ```
 $ jupyter notebook
 ```
